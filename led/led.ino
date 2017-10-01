@@ -5,15 +5,20 @@
 #define UM_SEGUNDO 1000
 #define MEIO_SEGUNDO 500
 
+#define TAMANHO_SEQUENCIA 4
+
+int sequenciaLuzes[TAMANHO_SEQUENCIA];
+
 void setup() {
   Serial.begin(9600);
   iniciarPortas();
+  iniciarJogo();
 }
 
 void loop() {
-  piscarLed(LED_VERMELHO);
-  piscarLed(LED_VERDE);
-  piscarLed(LED_AMARELO);
+  for (int indice = 0; indice < TAMANHO_SEQUENCIA ; indice++) {
+    piscarLed(sequenciaLuzes[indice]);
+  }
 }
 
 void iniciarPortas() {
@@ -23,8 +28,15 @@ void iniciarPortas() {
 }
 
 void piscarLed(int porta) {
- digitalWrite(porta, HIGH);
- delay(UM_SEGUNDO);
- digitalWrite(porta, LOW);   
- delay(MEIO_SEGUNDO);
+  digitalWrite(porta, HIGH);
+  delay(UM_SEGUNDO);
+  digitalWrite(porta, LOW);
+  delay(MEIO_SEGUNDO);
 }
+
+void iniciarJogo() {
+  sequenciaLuzes[0] = LED_VERMELHO;
+  sequenciaLuzes[1] = LED_AMARELO;
+  sequenciaLuzes[2] = LED_VERDE;
+}
+
