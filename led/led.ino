@@ -16,9 +16,9 @@ void setup() {
 }
 
 void loop() {
-  for (int indice = 0; indice < TAMANHO_SEQUENCIA ; indice++) {
-    piscarLed(sequenciaLuzes[indice]);
-  }
+  int numRand = gerarNumRand();
+  Serial.println(numRand);
+    piscarLed(numRand);
 }
 
 void iniciarPortas() {
@@ -38,5 +38,9 @@ void iniciarJogo() {
   sequenciaLuzes[0] = LED_VERMELHO;
   sequenciaLuzes[1] = LED_AMARELO;
   sequenciaLuzes[2] = LED_VERDE;
+}
+
+int gerarNumRand() {
+  return (int) random(2, 5);
 }
 
